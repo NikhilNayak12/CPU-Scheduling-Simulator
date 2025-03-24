@@ -107,8 +107,8 @@ function displayGanttChart(data) {
         setTimeout(() => {
             let div = document.createElement("div");
             div.classList.add("process");
-            div.innerText = `P${pid}\n${start}-${end}`;
-            div.style.width = `${(end - start) * 20}px`;
+            div.innerText = P${pid}\n${start}-${end};
+            div.style.width = ${(end - start) * 20}px;
             div.style.background = "lightblue";
             div.style.transform = "scale(1.1)";
             setTimeout(() => { div.style.transform = "scale(1)"; }, 500);
@@ -134,8 +134,8 @@ function calculateTimes(ganttData) {
     const avgWaitingTime = Object.values(waitingTimes).reduce((a, b) => a + b, 0) / processes.length;
     const avgTurnaroundTime = Object.values(turnaroundTimes).reduce((a, b) => a + b, 0) / processes.length;
 
-    document.getElementById("avgWaitingTime").innerText = `Average Waiting Time: ${avgWaitingTime.toFixed(2)}`;
-    document.getElementById("avgTurnaroundTime").innerText = `Average Turnaround Time: ${avgTurnaroundTime.toFixed(2)}`;
+    document.getElementById("avgWaitingTime").innerText = Average Waiting Time: ${avgWaitingTime.toFixed(2)};
+    document.getElementById("avgTurnaroundTime").innerText = Average Turnaround Time: ${avgTurnaroundTime.toFixed(2)};
 }
 
 function saveSession() {
