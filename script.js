@@ -15,14 +15,13 @@ function addProcess() {
 function updateProcessTable() {
     const tableBody = document.getElementById("processTable").querySelector("tbody");
     tableBody.innerHTML = "";
-    processes.forEach((proc, index) => {
+    processes.forEach((proc) => {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${proc.pid}</td>
             <td>${proc.arrival}</td>
             <td>${proc.burst}</td>
             <td>${proc.priority}</td>
-            <td><button onclick="selectProcessForEditing(${index})">Edit</button></td>
         `;
         tableBody.appendChild(row);
     });
@@ -107,9 +106,9 @@ function displayGanttChart(data) {
         setTimeout(() => {
             let div = document.createElement("div");
             div.classList.add("process");
+            div.setAttribute("data-pid", pid); // Ensure data-pid attribute is set
             div.innerText = P${pid}\n${start}-${end};
             div.style.width = ${(end - start) * 20}px;
-            div.style.background = "lightblue";
             div.style.transform = "scale(1.1)";
             setTimeout(() => { div.style.transform = "scale(1)"; }, 500);
             chart.appendChild(div);
@@ -161,6 +160,14 @@ function loadSession() {
     } else {
         alert("No saved session found.");
     }
+}
+
+function clearAllProcesses() {
+    processes = [];
+    updateProcessTable();
+    document.getElementById("ganttChart").innerHTML = "";
+    document.getElementById("avgWaitingTime").innerText = "Average Waiting Time: N/A";
+    document.getElementById("avgTurnaroundTime").innerText = "Average Turnaround Time: N/A";
 }
 
 let editingProcessIndex = -1;
